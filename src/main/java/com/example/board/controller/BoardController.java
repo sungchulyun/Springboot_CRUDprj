@@ -45,9 +45,12 @@ public class BoardController {
     }
 
     @GetMapping("/board/delete")
-    public String boardDelete(Integer id){
+    public String boardDelete(Integer id, Model model){
         boardService.boardDelete(id);
-        return "redirect:/board/list";
+
+        model.addAttribute("message", "글이 삭제되었습니다.");
+        model.addAttribute("searchUrl","/board/list");
+        return "message";
     }
 
     @GetMapping("/board/modify/{id}")
